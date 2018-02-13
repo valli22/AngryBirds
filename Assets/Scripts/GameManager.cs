@@ -19,8 +19,8 @@ public class GameManager : MonoBehaviour {
 	public float rangeShoot = 3;
 	public float power = 1000;
 
-	public int lifes = 6;
-	public int enemies = 3;
+	public int lifes;
+	public int enemies;
 	int score = 0;
 
 	[SerializeField]
@@ -38,6 +38,8 @@ public class GameManager : MonoBehaviour {
 	GameObject highScoreImage;
 	[SerializeField]
 	GameObject looseHud;
+	[SerializeField]
+	GameObject pauseMenu;
 
 	public bool canShoot = true;
 
@@ -57,6 +59,9 @@ public class GameManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if (Input.GetKeyDown (KeyCode.Escape)) {
+			_MENUACTIVE	 ();
+		}
 		if (lifes > 0 && canShoot) {
 			if (Input.GetMouseButton (0)) {
 				if (instancePref != null) {
@@ -82,7 +87,7 @@ public class GameManager : MonoBehaviour {
 				if (instancePref != null) {
 					instancePref.GetComponent<Rigidbody2D> ().isKinematic = false;
 					instancePref.GetComponent<Rigidbody2D> ().AddForce ((startPoint - instancePref.transform.position) * power);
-					instancePref.GetComponent<Proyectil> ().changeTag ("Lanzado");
+					instancePref.tag = "Lanzado";
 					instancePref = null;
 					startPoint = new Vector3 (0, 0, 0);
 					canShoot = false;
@@ -90,6 +95,14 @@ public class GameManager : MonoBehaviour {
 			}
 
 		}
+	}
+
+	public void _MENUACTIVE(){
+		pauseMenu.SetActive (!pauseMenu.activeSelf);
+		if (pauseMenu.activeSelf)
+			Time.timeScale = 0;
+		else 
+			Time.timeScale = 1;
 	}
 
 	public void ChangeScore(){
@@ -109,10 +122,12 @@ public class GameManager : MonoBehaviour {
 		score += 100 * lifes;
 		if (enemies <= 0) {
 			winHud.SetActive (true);
+			PlayerPrefs.SetInt ("Level"+(SceneManager.GetActiveScene().buildIndex+1).ToString(),1);
 			winScore.text = "Score: " + score;
-			int scoreSaved = PlayerPrefs.GetInt ("Score", 0);
+			int scoreSaved = PlayerPrefs.GetInt (SceneManager.GetActiveScene().name+"score", 0);
 			if (scoreSaved < score) {
-				PlayerPrefs.SetInt ("Score",score);
+				PlayerPrefs.SetInt (SceneManager.GetActiveScene().name+"score",score);
+
 				winScore.text = "NEW SCORE: " + score;
 				highScoreImage.SetActive (true);
 			}
@@ -126,16 +141,17 @@ public class GameManager : MonoBehaviour {
 	}
 
 	public void _RESTART(){
-		SceneManager.LoadScene (SceneManager.GetActiveScene().name);
 		Time.timeScale = 1;
+		SceneManager.LoadScene (SceneManager.GetActiveScene().name);
 	}
 
 	public void _EXIT(){
-		Application.Quit ();
-	}
-	public void _CONTINUE(){
-		//ahora vuelve al mismo nivel porque no hay mas
-		SceneManager.LoadScene (SceneManager.GetActiveScene().name);
 		Time.timeScale = 1;
+		SceneManager.LoadScene ("MainMenu");
+	}
+	public void _NEXTLEVEL(string name){
+		Time.timeScale = 1;
+		SceneManager.LoadScene (name);
+
 	}
 }

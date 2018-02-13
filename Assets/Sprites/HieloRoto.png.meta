@@ -1,12 +1,12 @@
 fileFormatVersion: 2
-guid: e5dda85cea04ca74bb15d540fedd16f5
-timeCreated: 1518193700
+guid: 45b51b14d888e2041a9fc3cb92138adc
+timeCreated: 1518480594
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Boss1
-    21300002: Boss2
-    21300004: Boss3
+    21300000: HieloRectanguloRoto
+    21300002: HieloGordoRoto
+    21300004: HieloCuadradoRoto
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -123,13 +123,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Boss1
+      name: HieloRectanguloRoto
       rect:
         serializedVersion: 2
-        x: 41
-        y: 814
-        width: 127
-        height: 153
+        x: 63
+        y: 339
+        width: 365
+        height: 33
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -137,13 +137,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Boss2
+      name: HieloGordoRoto
       rect:
         serializedVersion: 2
-        x: 41
-        y: 659
-        width: 126
-        height: 153
+        x: 66
+        y: 250
+        width: 142
+        height: 67
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -151,13 +151,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Boss3
+      name: HieloCuadradoRoto
       rect:
         serializedVersion: 2
-        x: 41
-        y: 504
-        width: 126
-        height: 153
+        x: 244
+        y: 251
+        width: 64
+        height: 66
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
