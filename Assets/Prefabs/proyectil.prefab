@@ -128,6 +128,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ed6542f53096994a9fb3356c54eb8f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boing: {fileID: 8300000, guid: 918160e5ce4e59c4991a9b88dd83b616, type: 3}
 --- !u!212 &212375025262830100
 SpriteRenderer:
   m_ObjectHideFlags: 1

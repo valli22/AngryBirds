@@ -15,6 +15,9 @@ public class Boss : MonoBehaviour {
 	[SerializeField]
 	Sprite danyo3;
 
+	[SerializeField]
+	AudioClip golpe;
+
 	SpriteRenderer spriteRendererComponent;
 
 	// Use this for initialization
@@ -34,6 +37,7 @@ public class Boss : MonoBehaviour {
 
 	void OnCollisionEnter2D(Collision2D other){
 		if(other.relativeVelocity.magnitude>=umbralDaño){
+			AudioSource.PlayClipAtPoint (golpe,transform.position);
 			hp -= other.relativeVelocity.magnitude;
 			if(hp<=totalLife/4)
 				spriteRendererComponent.sprite = danyo3;

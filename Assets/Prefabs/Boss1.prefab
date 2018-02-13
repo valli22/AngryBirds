@@ -133,6 +133,7 @@ MonoBehaviour:
   danyo1: {fileID: 21300000, guid: e5dda85cea04ca74bb15d540fedd16f5, type: 3}
   danyo2: {fileID: 21300002, guid: e5dda85cea04ca74bb15d540fedd16f5, type: 3}
   danyo3: {fileID: 21300004, guid: e5dda85cea04ca74bb15d540fedd16f5, type: 3}
+  golpe: {fileID: 8300000, guid: 7f7403221861fbd4bb7eeced598ed517, type: 3}
 --- !u!212 &212343155442354002
 SpriteRenderer:
   m_ObjectHideFlags: 1

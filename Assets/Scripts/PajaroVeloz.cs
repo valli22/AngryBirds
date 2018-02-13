@@ -7,6 +7,12 @@ public class PajaroVeloz : MonoBehaviour {
 	public float power;
 	bool used = false;
 
+	[SerializeField]
+	AudioClip boing;
+	[SerializeField]
+	AudioClip yihii;
+
+	bool once = false;
 	// Use this for initialization
 	void Start () {
 		
@@ -15,13 +21,18 @@ public class PajaroVeloz : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (Input.GetMouseButtonDown (0) && !GameManager.instance.canShoot && !used) {
+			AudioSource.PlayClipAtPoint (yihii,transform.position);
 			GetComponent<Rigidbody2D> ().velocity *= power;
 			used = true;
 		}
 	}
 
 	void OnCollisionEnter2D(Collision2D other){
-		StartCoroutine (WaitToChangeTag());
+		AudioSource.PlayClipAtPoint (boing,transform.position);
+		if (!once) {
+			StartCoroutine (WaitToChangeTag ());
+			once = true;
+		}
 	}
 
 	public void changeTag(string tag){

@@ -11,6 +11,9 @@ public class EnemyLife : MonoBehaviour {
 	Sprite danyo;
 	Sprite normal;
 
+	[SerializeField]
+	AudioClip golpe;
+
 	SpriteRenderer spriteRendererComponent;
 	public float timeDanyoAnimation = 2;
 
@@ -33,6 +36,7 @@ public class EnemyLife : MonoBehaviour {
 	void OnCollisionEnter2D(Collision2D other){
 		if(other.relativeVelocity.magnitude>=umbralDaño){
 			hp -= other.relativeVelocity.magnitude;
+			AudioSource.PlayClipAtPoint (golpe,transform.position);
 			CancelInvoke ();
 			spriteRendererComponent.sprite = danyo;
 			Invoke ("HurtAnimation",timeDanyoAnimation);

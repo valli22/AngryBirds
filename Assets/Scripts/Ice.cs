@@ -11,6 +11,9 @@ public class Ice : MonoBehaviour {
 	[SerializeField]
 	Sprite danyo;
 
+	[SerializeField]
+	AudioClip crack;
+
 	SpriteRenderer spriteRendererComponent;
 
 	// Use this for initialization
@@ -30,6 +33,7 @@ public class Ice : MonoBehaviour {
 
 	void OnCollisionEnter2D(Collision2D other){
 		if(other.relativeVelocity.magnitude>=umbralDaño){
+			AudioSource.PlayClipAtPoint (crack,transform.position);
 			hp -= other.relativeVelocity.magnitude;
 			if(hp <=totalHp/2)
 				spriteRendererComponent.sprite = danyo;

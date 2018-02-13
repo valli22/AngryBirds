@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class Proyectil : MonoBehaviour {
 
+	[SerializeField]
+	AudioClip boing;
+
+	bool once = false;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -15,7 +20,11 @@ public class Proyectil : MonoBehaviour {
 	}
 
 	void OnCollisionEnter2D(Collision2D other){
-		StartCoroutine (WaitToChangeTag());
+		AudioSource.PlayClipAtPoint (boing, transform.position);
+		if (!once) {
+			StartCoroutine (WaitToChangeTag ());
+			once = true;
+		}
 	}
 
 	public void changeTag(string tag){

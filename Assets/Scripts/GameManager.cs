@@ -40,6 +40,12 @@ public class GameManager : MonoBehaviour {
 	GameObject looseHud;
 	[SerializeField]
 	GameObject pauseMenu;
+	[SerializeField]
+	AudioClip wohoo;
+	[SerializeField]
+	AudioClip buttonSound;
+
+	AudioSource cameraAS;
 
 	public bool canShoot = true;
 
@@ -55,6 +61,8 @@ public class GameManager : MonoBehaviour {
 		ChangeLife ();
 		ChangeScore ();
 		ChangeEnemiesHud ();
+		cameraAS = Camera.main.GetComponent<AudioSource> ();
+		cameraAS.clip = buttonSound;
 	}
 	
 	// Update is called once per frame
@@ -88,6 +96,7 @@ public class GameManager : MonoBehaviour {
 					instancePref.GetComponent<Rigidbody2D> ().isKinematic = false;
 					instancePref.GetComponent<Rigidbody2D> ().AddForce ((startPoint - instancePref.transform.position) * power);
 					instancePref.tag = "Lanzado";
+					AudioSource.PlayClipAtPoint (wohoo, instancePref.transform.position);
 					instancePref = null;
 					startPoint = new Vector3 (0, 0, 0);
 					canShoot = false;
@@ -98,6 +107,7 @@ public class GameManager : MonoBehaviour {
 	}
 
 	public void _MENUACTIVE(){
+		cameraAS.Play ();
 		pauseMenu.SetActive (!pauseMenu.activeSelf);
 		if (pauseMenu.activeSelf)
 			Time.timeScale = 0;
@@ -141,15 +151,18 @@ public class GameManager : MonoBehaviour {
 	}
 
 	public void _RESTART(){
+		cameraAS.Play ();
 		Time.timeScale = 1;
 		SceneManager.LoadScene (SceneManager.GetActiveScene().name);
 	}
 
 	public void _EXIT(){
+		cameraAS.Play ();
 		Time.timeScale = 1;
 		SceneManager.LoadScene ("MainMenu");
 	}
 	public void _NEXTLEVEL(string name){
+		cameraAS.Play ();
 		Time.timeScale = 1;
 		SceneManager.LoadScene (name);
 

@@ -125,6 +125,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   power: 2
+  boing: {fileID: 8300000, guid: 918160e5ce4e59c4991a9b88dd83b616, type: 3}
+  yihii: {fileID: 8300000, guid: 6f0f555aab8792f49a3a0bc6cefc0fd7, type: 3}
 --- !u!212 &212872916600022650
 SpriteRenderer:
   m_ObjectHideFlags: 1
